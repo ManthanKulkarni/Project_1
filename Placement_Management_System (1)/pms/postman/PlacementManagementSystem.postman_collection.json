@@ -1,0 +1,77 @@
+{
+  "info": {
+    "name": "Placement Management System",
+    "description": "REST API collection for the Placement Management System backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" }
+  ],
+  "item": [
+    {
+      "name": "Companies",
+      "item": [
+        { "name": "Create Company", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "url": "{{baseUrl}}/api/companies", "body": { "mode": "raw", "raw": "{\n  \"name\": \"Acme Corp\",\n  \"contactEmail\": \"hr@acme.com\",\n  \"contactPhone\": \"9876543210\",\n  \"address\": \"Pune, India\"\n}" } } },
+        { "name": "Get All Companies", "request": { "method": "GET", "url": "{{baseUrl}}/api/companies?page=0&size=10" } },
+        { "name": "Get Company By Id", "request": { "method": "GET", "url": "{{baseUrl}}/api/companies/1" } },
+        { "name": "Update Company", "request": { "method": "PUT", "header": [{"key":"Content-Type","value":"application/json"}], "url": "{{baseUrl}}/api/companies/1", "body": { "mode": "raw", "raw": "{\n  \"name\": \"Acme Corp\",\n  \"contactEmail\": \"hr@acme.com\",\n  \"active\": true\n}" } } },
+        { "name": "Delete Company", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/companies/1" } }
+      ]
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        { "name": "Create Job", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "url": "{{baseUrl}}/api/jobs", "body": { "mode": "raw", "raw": "{\n  \"title\": \"Software Engineer\",\n  \"description\": \"Backend role using Java and Spring Boot\",\n  \"eligibleCgpa\": 7.0,\n  \"requiredSkills\": \"Java, Spring Boot, SQL\",\n  \"packageOffered\": 1200000,\n  \"applicationDeadline\": \"2026-12-31\",\n  \"companyId\": 1\n}" } } },
+        { "name": "Get All Jobs", "request": { "method": "GET", "url": "{{baseUrl}}/api/jobs?activeOnly=true&page=0&size=10" } },
+        { "name": "Get Job By Id", "request": { "method": "GET", "url": "{{baseUrl}}/api/jobs/1" } },
+        { "name": "Update Job", "request": { "method": "PUT", "header": [{"key":"Content-Type","value":"application/json"}], "url": "{{baseUrl}}/api/jobs/1", "body": { "mode": "raw", "raw": "{\n  \"title\": \"Senior Software Engineer\"\n}" } } },
+        { "name": "Deactivate Job", "request": { "method": "PATCH", "url": "{{baseUrl}}/api/jobs/1/deactivate" } },
+        { "name": "Delete Job", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/jobs/1" } }
+      ]
+    },
+    {
+      "name": "Students",
+      "item": [
+        { "name": "Create Student", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "url": "{{baseUrl}}/api/students", "body": { "mode": "raw", "raw": "{\n  \"name\": \"Aaryan Sharma\",\n  \"email\": \"aaryan@example.com\",\n  \"department\": \"Information Technology\",\n  \"cgpa\": 8.5,\n  \"resumeSummary\": \"IT student skilled in Java and Python\",\n  \"skills\": [\"Java\", \"Spring Boot\", \"SQL\"]\n}" } } },
+        { "name": "Get All Students", "request": { "method": "GET", "url": "{{baseUrl}}/api/students?page=0&size=10" } },
+        { "name": "Get Student By Id", "request": { "method": "GET", "url": "{{baseUrl}}/api/students/1" } },
+        { "name": "Update Student", "request": { "method": "PUT", "header": [{"key":"Content-Type","value":"application/json"}], "url": "{{baseUrl}}/api/students/1", "body": { "mode": "raw", "raw": "{\n  \"cgpa\": 8.7\n}" } } },
+        { "name": "Deactivate Student", "request": { "method": "PATCH", "url": "{{baseUrl}}/api/students/1/deactivate" } },
+        { "name": "Delete Student", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/students/1" } }
+      ]
+    },
+    {
+      "name": "Applications",
+      "item": [
+        { "name": "Apply for Job", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "url": "{{baseUrl}}/api/applications", "body": { "mode": "raw", "raw": "{\n  \"studentId\": 1,\n  \"jobId\": 1\n}" } } },
+        { "name": "Get All Applications", "request": { "method": "GET", "url": "{{baseUrl}}/api/applications?page=0&size=10" } },
+        { "name": "Get Application By Id", "request": { "method": "GET", "url": "{{baseUrl}}/api/applications/1" } },
+        { "name": "Update Application Status", "request": { "method": "PATCH", "url": "{{baseUrl}}/api/applications/1/status?status=SHORTLISTED" } },
+        { "name": "Delete Application", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/applications/1" } }
+      ]
+    },
+    {
+      "name": "Interviews",
+      "item": [
+        { "name": "Schedule Interview", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "url": "{{baseUrl}}/api/interviews", "body": { "mode": "raw", "raw": "{\n  \"applicationId\": 1,\n  \"round\": 1,\n  \"scheduledDate\": \"2026-09-01T10:00:00\"\n}" } } },
+        { "name": "Get Interviews By Application", "request": { "method": "GET", "url": "{{baseUrl}}/api/interviews?applicationId=1" } },
+        { "name": "Get Interview By Id", "request": { "method": "GET", "url": "{{baseUrl}}/api/interviews/1" } },
+        { "name": "Update Interview Result", "request": { "method": "PUT", "header": [{"key":"Content-Type","value":"application/json"}], "url": "{{baseUrl}}/api/interviews/1", "body": { "mode": "raw", "raw": "{\n  \"result\": \"PASSED\",\n  \"feedback\": \"Strong problem solving skills\"\n}" } } }
+      ]
+    },
+    {
+      "name": "Placements",
+      "item": [
+        { "name": "Create Placement", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "url": "{{baseUrl}}/api/placements", "body": { "mode": "raw", "raw": "{\n  \"studentId\": 1,\n  \"companyId\": 1,\n  \"jobId\": 1,\n  \"packageOffered\": 1200000,\n  \"joiningDate\": \"2027-01-15\",\n  \"status\": \"OFFERED\"\n}" } } },
+        { "name": "Get All Placements", "request": { "method": "GET", "url": "{{baseUrl}}/api/placements?page=0&size=10" } },
+        { "name": "Get Placement By Id", "request": { "method": "GET", "url": "{{baseUrl}}/api/placements/1" } }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        { "name": "Get Dashboard Stats", "request": { "method": "GET", "url": "{{baseUrl}}/api/dashboard" } }
+      ]
+    }
+  ]
+}
